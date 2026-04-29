@@ -51,10 +51,9 @@ const SignUpModal = () => {
             return;
           }
 
-          const res = await fetch(`/u/create`, {
+          const res = await fetch(`/u/${username}`, {
             method: "POST",
             body: JSON.stringify({
-              username,
               password
             })
           });
