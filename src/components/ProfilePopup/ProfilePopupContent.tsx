@@ -1,12 +1,12 @@
+import type { PublicAccount } from "@/db/schema";
+import { Shield, User } from "lucide-react";
+import UsernameIDSwitcher from "./UsernameIDSwitcher";
 import { Vibrant } from "node-vibrant/node";
 
-const ProfilePopupContent = async (props: Record<string, any> & {
+const ProfilePopupContent = async (props: Record<string, any> & PublicAccount & {
   avatar: string,
-  bio: string,
   canEdit: boolean,
-  displayName: string,
-  splash?: string,
-  username: string
+  splash?: string
 }) => {
   const accent = await Vibrant.from(props.avatar).getPalette();
 
@@ -21,10 +21,17 @@ const ProfilePopupContent = async (props: Record<string, any> & {
           <img className="rounded-full w-6 h-6" src={props.avatar} alt={props.displayName + "'s avatar"} />
           <div>
             <div className="text-2xl font-bold">{props.displayName}</div>
-            <sub>@{props.username}</sub>
+            <sub><UsernameIDSwitcher id={props.id} username={props.username} /></sub><br />
+            <sub>{props.pronouns}</sub>
           </div>
         </div>
-        <div>{props.bio}</div>
+        {props.bio &&
+          <div className="whitespace-pre-line">{props.bio}</div>
+        }
+        {props.admin &&
+          <sub><Shield />Administrator</sub>
+        }
+        <sub><User />Joined {new Date(props.joined).toLocaleDateString()}</sub>
       </div>
     </div>
   );

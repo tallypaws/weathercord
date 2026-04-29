@@ -1,14 +1,13 @@
-import { Settings } from "lucide-react";
 import Box from "../Box/Box";
 import BoxButton from "../BoxButton/BoxButton";
+import type { PublicAccount } from "@/db/schema";
+import { Settings } from "lucide-react";
 import { Vibrant } from "node-vibrant/node";
 
-const UserIndicatorSmall = async (props: Record<string, any> & {
+const UserIndicatorSmall = async (props: Record<string, any> & PublicAccount & {
   avatar: string,
   canEdit: boolean,
-  displayName: string,
   splash?: string,
-  username: string
 }) => {
   const accent = await Vibrant.from(props.avatar).getPalette();
 

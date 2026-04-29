@@ -1,5 +1,19 @@
 import { int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
+export interface Account {
+  admin: boolean;
+  bio?: string;
+  displayName?: string;
+  email?: string;
+  id: string;
+  joined: number;
+  password: string;
+  pronouns?: string;
+  username: string;
+}
+
+export type PublicAccount = Pick<Account, "admin" | "bio" | "displayName" | "id" | "joined" | "pronouns" | "username">;
+
 export const accountsTable = sqliteTable("accounts", {
   admin: int(),
   bio: text(),

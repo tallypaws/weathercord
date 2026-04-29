@@ -58,6 +58,12 @@ input[type="submit"]:hover {
   outline-color: var(--outline-active);
 }
 
+.lucide {
+  display: inline;
+  height: 1.5em;
+  margin-top: -0.2em;
+}
+
 @layer base {
   h1 {
     font-size: 1.5rem;
