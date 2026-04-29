@@ -4,12 +4,14 @@
   --accent: #ccaff1;
   --background: #060606;
   --background-2: #090909;
+  --box-button-active: #aeaeae33;
   --foreground: #fafafa;
-  --spacing: 1rem;
   --outline: #292929;
   --outline-active: #424242;
-  --box-button-active: #aeaeae33;
   --sub: #9e9e9e;
+  --text-selection: #6284ff75;
+
+  --spacing: 1rem;
 }
 
 body {
@@ -17,6 +19,16 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 0.9rem;
+}
+
+::selection {
+  background-color: var(--text-selection);
+  color: var(--foreground);
+}
+
+::-moz-selection {
+  background-color: var(--text-selection);
+  color: var(--foreground);
 }
 
 sub, label *:not(input) {
