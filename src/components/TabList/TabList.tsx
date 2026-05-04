@@ -17,7 +17,6 @@ const TabList = (props: {
   let [hoveredTab, setHoveredTab] = useState(tabs + 1);
   let [tabY, setTabY] = useState(0);
 
-
   requestAnimationFrame(() => {
     if (Math.abs(hoveredTab - tabs - tabY) > 0.005) setTabY(tabY + (hoveredTab - tabs - tabY) / 3);
   });
