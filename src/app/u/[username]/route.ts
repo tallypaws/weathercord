@@ -1,4 +1,4 @@
-import { accountsTable, sessionsTable } from "@/db/schema";
+import { accountsTable, connectionsTable, sessionsTable } from "@/db/schema";
 import cryptoRandomString from "crypto-random-string";
 import { cookies } from "next/headers";
 import { count, eq } from "drizzle-orm";
@@ -13,11 +13,14 @@ export async function GET(_: Request, { params }: { params: Promise<{ username: 
 
   if (!account) return new Response(null, { status: 404 });
 
+  const connections = (await db.select().from(connectionsTable).where(eq(connectionsTable.id, account.id))).values().toArray();
+
   return new Response(JSON.stringify({
     accent1: nullish(account.accent1),
     accent2: nullish(account.accent2),
     admin: !!account.admin,
     bio: nullish(account.bio),
+    connections,
     displayName: nullish(account.displayName),
     id: account.id,
     joined: account.joined,

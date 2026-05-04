@@ -6,7 +6,7 @@ import "./badgeStyles.css";
 const Badge = (props: {
   color: string,
   icon: ReactNode
-  value: string
+  value: string | ReactNode
 }) => {
   const [hover, setHover] = useState(false);
   const [timeout, setTimeoutState] = useState(setTimeout(() => {}));

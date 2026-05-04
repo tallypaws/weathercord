@@ -3,8 +3,8 @@
 import Badge from "./Badge";
 import { contributors } from "@/lib/contributors";
 import convert from "color-convert";
-import { Cake, Heart, Shield, Star } from "lucide-react";
-import type { PublicAccount } from "@/db/schema";
+import { Cake, Globe, Heart, Shield, Star } from "lucide-react";
+import { ConnectionType, type PublicAccount } from "@/db/schema";
 import UsernameIDSwitcher from "./UsernameIDSwitcher";
 
 const ProfilePopupContent = (props: Record<string, any> & PublicAccount & {
@@ -49,6 +49,15 @@ const ProfilePopupContent = (props: Record<string, any> & PublicAccount & {
         </div>
         {props.bio &&
           <div className="whitespace-pre-line">{props.bio}</div>
+        }
+        {props.connections.length > 0 &&
+          <div>
+            {props.connections.map((connection, index) => {
+              if (connection.type === ConnectionType.Domain) {
+                return <Badge key={index} color="#bad4e8" icon={<Globe />} value={<a href={"//" + connection.value}>{connection.value}</a>} />;
+              }
+            })}
+          </div>
         }
         <div>
           {props.id === "0w1bcb00925be5d2" &&

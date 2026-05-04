@@ -5,6 +5,7 @@ export interface Account {
   accent2: string | null;
   admin: boolean;
   bio: string | null;
+  connections: Connection[];
   displayName: string | null;
   email?: string;
   nameFont: string | null;
@@ -15,7 +16,17 @@ export interface Account {
   username: string;
 }
 
-export type PublicAccount = Pick<Required<Account>, "accent1" | "accent2" | "admin" | "bio" | "displayName" | "id" | "joined" | "nameFont" | "pronouns" | "username">;
+export enum ConnectionType {
+  Domain = "domain"
+}
+
+export interface Connection {
+  id: string;
+  type: ConnectionType;
+  value: string;
+}
+
+export type PublicAccount = Pick<Required<Account>, "accent1" | "accent2" | "admin" | "bio" | "connections" | "displayName" | "id" | "joined" | "nameFont" | "pronouns" | "username">;
 export type AuthorizedAccountFromAPI = Required<Omit<Account, "password">>;
 
 export const accountsTable = sqliteTable("accounts", {
@@ -39,4 +50,10 @@ export const sessionsTable = sqliteTable("sessions", {
   id: text().notNull(),
   ip: text(),
   userAgent: text()
+});
+
+export const connectionsTable = sqliteTable("connections", {
+  id: text().notNull(),
+  type: text().notNull(),
+  value: text().notNull()
 });

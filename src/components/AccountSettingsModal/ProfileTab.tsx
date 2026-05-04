@@ -52,6 +52,7 @@ const ProfileTab = (props: {
             accent2: customAccent ? accent2 : null,
             admin: props.account.admin,
             bio: nullish(bio),
+            connections: props.account.connections,
             displayName: nullish(displayName),
             email: props.account.email,
             id: props.account.id,
@@ -116,6 +117,7 @@ const ProfileTab = (props: {
           accent2={customAccent ? accent2 : null}
           admin={props.account.admin}
           bio={nullish(bio)}
+          connections={props.account.connections}
           displayName={nullish(displayName)}
           id={props.account.id}
           joined={props.account.joined}
