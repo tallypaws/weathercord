@@ -18,17 +18,17 @@ const TabList = (props: {
   let [tabY, setTabY] = useState(0);
 
   requestAnimationFrame(() => {
-    if (Math.abs(hoveredTab - tabs - tabY) > 0.005) setTabY(tabY + (hoveredTab - tabs - tabY) / 3);
+    if (Math.abs(hoveredTab - tabs - tabY) > 0.0000001) setTabY(tabY + (hoveredTab - tabs - tabY) / 3);
   });
 
   return <div className="w-16 shrink-0 -m-2 p-2 pr-1 -mr-1 overflow-auto relative">
     <div className="rounded-xl absolute" style={{
-      width: `calc(100% - 3rem - ${Math.abs(hoveredTab - tabs - tabY)}rem * 6)`,
+      width: `calc(100% - 3rem - ${Math.abs(hoveredTab - tabs - tabY)}rem * 7)`,
       height: `calc(1lh + 0.8rem + ${Math.abs(hoveredTab - tabs - tabY)}rem * 2)`,
       left: "8.5rem",
       top: `calc((1lh + 0.8rem) * ${tabY} + (0.5lh + 0.2rem))`,
       translate: "-50% -50%",
-      transition: "width 0.15s, height 0.25s, top 0.1s, background-color 0.3s",
+      transition: "width 0.2s, height 0.25s, top 0.1s, background-color 0.3s",
       backgroundColor: props.tab === (hoveredTab - tabs - 1) ? "var(--accent-background)" : "var(--box-button-active)"
     }} />
     <div className="contents" onMouseLeave={() => setHoveredTab(props.tab + tabs + 1)}>
