@@ -1,9 +1,11 @@
 "use client";
 
 import { AuthorizedAccountFromAPI } from "@/db/schema";
+import BoxButton from "../BoxButton/BoxButton";
 import { Dispatch, SetStateAction, useState } from "react";
 import Modal from "../Modal/Modal";
 import ProfileTab from "./ProfileTab";
+import { X } from "lucide-react";
 
 export enum Tab {
   Profile = 0,
@@ -19,7 +21,8 @@ const AccountSettingsModal = (props: {
   let [tab, setTab] = useState(props.startingTab || Tab.Profile);
 
   return (
-    <Modal className="w-65 h-40 flex gap-2">
+    <Modal className="w-65 h-40 flex gap-2 relative">
+      <BoxButton className="absolute top-1 right-1 backdrop-blur-sm" onClick={props.closeModal}><X /></BoxButton>
       <div className="w-13 shrink-0 -m-2 p-2 pr-1 -mr-1 overflow-auto">
         {Object.keys(Tab).map((t) => {
           if (isNaN(parseInt(t))) return (
