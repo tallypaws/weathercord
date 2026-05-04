@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Modal from "../Modal/Modal";
 import ProfileTab from "./ProfileTab";
 import { X } from "lucide-react";
+import ConnectionsTab from "./ConnectionsTab";
 
 export enum Tab {
   Profile = 0,
@@ -35,6 +36,9 @@ const AccountSettingsModal = (props: {
       <div className="grow overflow-auto -m-2 p-2 pl-1 -ml-1">
         {tab === Tab.Profile &&
           <ProfileTab account={props.account} setAccount={props.setAccount} />
+        }
+        {tab === Tab.Connections &&
+          <ConnectionsTab account={props.account} />
         }
       </div>
     </Modal>

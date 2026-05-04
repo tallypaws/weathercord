@@ -1,12 +1,10 @@
 "use client";
 
-import ActionRow from "../ActionRow/ActionRow";
 import { AuthorizedAccountFromAPI } from "@/db/schema";
 import Box from "../Box/Box";
 import { Dispatch, SetStateAction, useState } from "react";
 import { nullish } from "@/lib/api";
 import ProfilePopupContent from "../ProfilePopup/ProfilePopupContent";
-import { Tab } from "./AccountSettingsModal";
 
 const ProfileTab = (props: {
   account: AuthorizedAccountFromAPI,
